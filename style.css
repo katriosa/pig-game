@@ -1,0 +1,74 @@
+.page {
+  background: linear-gradient(0.25turn, #3f87a6, #f69d3c);
+  display: flex;
+  justify-content: center;
+}
+.container {
+  margin: 50px;
+  width: 1000px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  display: flex;
+}
+.container__player-0 {
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px 0px 0px 10px;
+}
+.container__player-1 {
+  width: 50%;
+  border-radius: 0px 10px 10px 0px;
+}
+.title {
+  margin-top: 20%;
+  margin-left: 30%;
+}
+.title-player {
+  font-size: 35px;
+}
+.number {
+  font-size: 70px;
+  margin-left: 45%;
+}
+.score {
+  width: 200px;
+  height: 120px;
+  background-color: #3f87a6;
+  text-align: center;
+  margin-top: 25%;
+  margin-left: 30%;
+  border-radius: 10px;
+}
+.score-title {
+  font-size: 20px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+.score-current {
+  font-size: 30px;
+}
+.button {
+  position: absolute;
+  width: 200px;
+  height: 600px;
+  margin-left: 27%;
+}
+.btn {
+  width: 180px;
+  height: 50px;
+  border-radius: 50px;
+  border: none;
+  font-size: 20px;
+  background-color: white;
+  opacity: 0.5;
+}
+.new-game {
+  margin-top: 20%;
+}
+.roll-dice {
+  margin-top: 290px;
+}
+.hold {
+  margin-top: 20px;
+}
