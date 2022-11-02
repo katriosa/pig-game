@@ -4,42 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pig Game</title>
+    <title>MY Pig Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="page">
-   
-    <div class="container">
-      <div class="button">
-      <button class="btn new-game">🔁 NEW GAME</button>
-      <button class="btn roll-dice">🎲 ROLL DICE</button>
-      <button class="btn hold">📥 HOLD</button> 
-    </div>
-      <div class="container__player-0 active">
-        <div class="title">
-        <h3 class="title-player">PLAYER 1</h3>
-      </div>
-      <div class="number">5</div>
-      <div class="score">
-        <div class="score-title">CURRENT</div>
-        <div class="score-current">2</div>
-      <div class="score__player-0">
-      </div>
-    </div>
-      </div>
-      <div class="container__player-1">
-        <div class="title">
-          <h3 class="title-player">PLAYER 2</h3>
-      </div>
-      <div class="number">0</div>
-      <div class="score">
-        <div class="score-title">CURRENT</div>
-        <div class="score-current">0</div>
-      <div class="score__player-0">
-      </div>
-    </div>
-     
-    </div>
+    <main class="main">
+      <section class="player player--0 player--active">
+        <h3 class="name name--0">PLAYER 1</h3>
+        <p class="score score--0">5</p>
+        <div class="current">
+          <p class="current-label">CURRENT</p>
+          <p class="current-score current--0">2</p>
+        </div>
+      </section>
+      <section class="player player--1">
+        <h3 class="name name--1">PLAYER 1</h3>
+        <p class="score score--1">5</p>
+        <div class="current">
+          <p class="current-label">CURRENT</p>
+          <p class="current-score current--1">2</p>
+        </div>
+      </section>
+      <img src="dice-5.png" alt="Playing dice" class="dice" />
+      <button class="btn btn--new">🔁 NEW GAME</button>
+      <button class="btn btn--roll">🎲 ROLL DICE</button>
+      <button class="btn btn--hold">📥 HOLD</button>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
