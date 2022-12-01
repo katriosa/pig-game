@@ -132,14 +132,8 @@ main {
 .btn:focus {
   outline: none;
 }
-.dice {
-  position: absolute;
-  left: 50%;
-  top: 16.5rem;
-  transform: translateX(-50%);
-  height: 10rem;
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
-}
+/* .dice-img {
+} */
 .player--winner {
   background-color: #2f2f2f;
 }
@@ -151,4 +145,52 @@ main {
 
 .hidden {
   display: none;
+}
+/*  */
+.container {
+  position: absolute;
+  left: 50%;
+  top: 16.5rem;
+  transform: translateX(-50%);
+  height: 10rem;
+  width: 10rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+  perspective: 500px;
+}
+.cube {
+  width: inherit;
+  height: inherit;
+  transform-style: preserve-3d;
+}
+.side {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  font: normal 30px Arial;
+  text-align: center;
+  line-height: 150px;
+  backface-visibility: hidden;
+}
+.dice-img {
+  width: inherit;
+  height: inherit;
+}
+/*  */
+.front {
+  transform: translateZ(5rem);
+}
+.back {
+  transform: rotateY(180deg) translateZ(5rem);
+}
+.right {
+  transform: rotateY(90deg) translateZ(5rem);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(5rem);
+}
+.top {
+  transform: rotateX(90deg) translateZ(5rem);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(5rem);
 }
