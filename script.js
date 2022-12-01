@@ -12,6 +12,7 @@ const containerDice = document.querySelector(".container");
 
 ////////////////////////////////////////////////////////////////////////////
 //rotate  dice
+
 const cube = document.querySelector(".cube");
 const front = document.querySelector(".front");
 const getRandom = function (min = 1, max = 6) {
@@ -29,6 +30,13 @@ let sides = {
 };
 let startSide = [0, 0];
 
+// sound
+const createSound = function (nameSrc) {
+  const sound = new Audio();
+  sound.src = `${nameSrc}-sound.mp3`;
+  sound.volume = 0.5;
+  sound.play();
+};
 ////////////////////////////////////////////////////////////////////////////
 let activePlayer = 0;
 let currentScoreActiv;
@@ -53,7 +61,10 @@ const switchPlayer = function () {
 };
 
 //new game
-btnNew.addEventListener("click", init);
+btnNew.addEventListener("click", function () {
+  createSound("new-game");
+  init();
+});
 
 const showResultCurrent = function (randomNumber) {
   currentScoreActiv = document.querySelector(`.current--${activePlayer}`);
@@ -94,10 +105,15 @@ btnRoll.addEventListener("click", function () {
   window.setTimeout(function () {
     showResultCurrent(randomNumber);
   }, 2000);
+
+  window.setTimeout(function () {
+    createSound("mix");
+  }, 300);
 });
 
 //hold
 btnHold.addEventListener("click", function () {
+  createSound("hold");
   currentScoreActiv = document.querySelector(`.current--${activePlayer}`);
   scoreActiv = document.querySelector(`.score--${activePlayer}`);
   scoreActiv.textContent =
