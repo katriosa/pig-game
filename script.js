@@ -10,14 +10,10 @@ const player0 = document.querySelector(".player--0");
 const player1 = document.querySelector(".player--1");
 const containerDice = document.querySelector(".container");
 
-////////////////////////////////////////////////////////////////////////////
 //rotate  dice
-
 const cube = document.querySelector(".cube");
 const front = document.querySelector(".front");
 const getRandom = function (min = 1, max = 6) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 let sides = {
@@ -39,15 +35,18 @@ const createSound = function (nameSrc) {
 };
 ////////////////////////////////////////////////////////////////////////////
 let activePlayer = 0;
-let currentScoreActiv;
-let scoreActiv;
+let currentScoreActiv, scoreActiv, playing;
 
+// Starting conditions
 const init = function () {
   currentScore0.textContent = 0;
   currentScore1.textContent = 0;
   score0.textContent = 0;
   score1.textContent = 0;
   containerDice.classList.add("hidden");
+  player0.classList.remove("player--winner");
+  player1.classList.remove("player--winner");
+  playing = true;
 };
 init();
 
@@ -55,8 +54,7 @@ init();
 const switchPlayer = function () {
   player0.classList.toggle("player--active");
   player1.classList.toggle("player--active");
-  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-  console.log(activePlayer);
+  activePlayer = activePlayer === 0 ? 1 : 0;
   return activePlayer;
 };
 
@@ -78,37 +76,45 @@ const showResultCurrent = function (randomNumber) {
 };
 
 btnRoll.addEventListener("click", function () {
-  containerDice.classList.remove("hidden");
-  let randomNumber = getRandom();
-  // diceEl.setAttribute("src", `dice-${randomNumber}.png`);
-  //rotate dice
+  if (playing) {
+    //display dice
+    containerDice.classList.remove("hidden");
 
-  let randomSide = sides[`side${randomNumber}`];
-  cube.animate(
-    [
-      // keyframes
-      { transform: `rotateY(${startSide[0]}deg) rotateX(${startSide[1]}deg)` },
+    // get random number
+    let randomNumber = getRandom();
 
+    //rotate dice
+    let randomSide = sides[`side${randomNumber}`];
+    cube.animate(
+      [
+        // keyframes
+        {
+          transform: `rotateY(${startSide[0]}deg) rotateX(${startSide[1]}deg)`,
+        },
+
+        {
+          transform: `rotateY(${randomSide[0] + 360}deg) rotateX(${
+            randomSide[1] + 360
+          }deg)`,
+        },
+      ],
       {
-        transform: `rotateY(${randomSide[0] + 360}deg) rotateX(${
-          randomSide[1] + 360
-        }deg)`,
-      },
-    ],
-    {
-      // timing options
-      duration: 1000,
-    }
-  );
-  cube.style.transform = `rotateY(${randomSide[0]}deg) rotateX(${randomSide[1]}deg)`;
+        // timing options
+        duration: 1000,
+      }
+    );
+    cube.style.transform = `rotateY(${randomSide[0]}deg) rotateX(${randomSide[1]}deg)`;
 
-  window.setTimeout(function () {
-    showResultCurrent(randomNumber);
-  }, 2000);
+    //show result
+    window.setTimeout(function () {
+      showResultCurrent(randomNumber);
+    }, 1500);
 
-  window.setTimeout(function () {
-    createSound("mix");
-  }, 300);
+    //play sound
+    window.setTimeout(function () {
+      createSound("mix");
+    }, 300);
+  }
 });
 
 //hold
@@ -119,5 +125,21 @@ btnHold.addEventListener("click", function () {
   scoreActiv.textContent =
     +scoreActiv.textContent + +currentScoreActiv.textContent;
   currentScoreActiv.textContent = 0;
-  switchPlayer();
+
+  // Check if player's score is >= 50
+  if (scoreActiv.textContent >= 50) {
+    // Finish the game
+    playing = false;
+    diceEl.classList.add("hidden");
+
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add("player--winner");
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove("player--active");
+  } else {
+    // Switch to the next player
+    switchPlayer();
+  }
 });

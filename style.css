@@ -132,21 +132,24 @@ main {
 .btn:focus {
   outline: none;
 }
-/* .dice-img {
-} */
+
 .player--winner {
-  background-color: #2f2f2f;
+  background-color: #244554;
 }
 
 .player--winner .name {
   font-weight: 700;
   color: #c7365f;
 }
+/* .player--winner .score {
+  font-weight: 700;
+  color: #c7365f;
+} */
 
 .hidden {
   display: none;
 }
-/*  */
+/*DICE CUBE ELEMENT */
 .container {
   position: absolute;
   left: 50%;
@@ -175,7 +178,6 @@ main {
   width: inherit;
   height: inherit;
 }
-/*  */
 .front {
   transform: translateZ(5rem);
 }
